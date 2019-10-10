@@ -133,6 +133,37 @@ echo命令用来输出字符串　
 eval命令用来执行命令.例如 eval "pwd"
 exec命令是用新的进程去代替原先的进程
 exit n 退出当前shell.
+printf命令跟c/c++使用相似.格式化输出.
 export 导出变量到其他子shell中使用
 expr 对表达式进行求值运算,例如 x=$(expr $x + 1),自增1
+return命令作用于函数的返回值.
+set命令可以为当前shell设置参数变量,例如set $(date). 将参数全部设置为date命令运行的结果
+shift命令将所有参数变量左移一个位置,将$2变为$1
+unset命令从环境中删除变量或函数
+grep命令同linux的grep
+find命令同linux的find
+```
+#### trap信号命令
+signal包含如下的信号
+```
+HUP 1       挂起,通常因终端掉线或用户退出而引发
+INT 2       中断,通常因按下Ctrl+C组合键而引发
+QUIT 3      退出,通常因按下Ctrl+\组合键而引发
+ABRT 6      中止,通常因某些严重的执行错误而引发
+ALRM 14     报警,通常用来处理超时
+TERM 15     终止,通常在系统关机时发送
+```
+### here 文档
+已两个<<开始,类似于php的定界符,如下
+```
+<<!EOF!
+
+!EOF!
+```
+### 调试脚本程序
+```
+sh -n <script>  // 同set -o noexec和set -n一样,只检查语法错误，不执行命令
+sh -v <script>  // 同set -o verbase和set -v一样,在执行命令之前回显它们
+sh -x <script>  // 同set -o xtrace和set -x一样,在处理完命令之后回显他们
+sh -u <script>  // 同set -o nounset和set -u一样,如果使用了未定义的变量,就给出出错消息.
 ```
