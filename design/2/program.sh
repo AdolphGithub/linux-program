@@ -292,4 +292,5 @@ do
         [qQ]) quit = "y";;
         *) echo "请选择正确的菜单";;
     esac
-done;
+done
+exit 0
