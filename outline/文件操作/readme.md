@@ -96,3 +96,123 @@ int dup(int oldfd);
 int dup2(int oldfd, int newfd);
 ```
 dup是给一个文件操作符,得到一个新的操作符,dup2是将oldfd复制给newfd.
+### 标准I/O库
+详情请查看[标准I/O库](https://github.com/AdolphGithub/modern_c/tree/master/chapter/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA)
+### 格式化输入和格式化输出
+详情请查看[输入输出](https://github.com/AdolphGithub/modern_c/tree/master/chapter/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA)
+### 文件和目录维护
+chmod 改变文件权限同linux的命令chmod
+```
+#include <sys/stat.h>
+
+int chmod(const char *pathname, mode_t mode);
+```
+chown 改变文件所属用户同linux,chown
+```
+#include <unistd.h>
+
+int chown(const char *pathname, uid_t owner, gid_t group);
+```
+unlink 删除文件
+```
+#include <unistd.h>
+
+int unlink(const char *pathname);
+```
+link 创建一个新链接
+```
+#include <unistd.h>
+int link(const char *oldpath, const char *newpath);
+```
+symlink 创建一个符号链接
+```
+#include <unistd.h>
+
+int symlink(const char *target, const char *linkpath);   
+```
+mkdir 创建一个目录 rmdir 删除一个目录
+```
+#include <sys/stat.h>
+#include <sys/types.h>
+int mkdir(const char *pathname, mode_t mode);
+
+#include <unistd.h>
+int rmdir(const char *pathname);
+```
+chdir 切换当前目录,和getcwd确定当前程序运行的目录
+```
+#include <unistd.h>
+int chdir(const char *path);
+
+char *getcwd(char *buf, size_t size);
+```
+### 扫描目录
+opendir 打开一个目录流
+```
+#include <sys/types.h>
+#include <dirent.h>
+
+DIR *opendir(const char *name);
+```
+readdir 读取一个目录,目录流的下个目录进入点。
+```
+#include <dirent.h>
+
+struct dirent *readdir(DIR *dirp);
+// 结构dirent 定义如下：
+struct dirent {
+    ino_t          d_ino;       /* Inode编号 */
+    off_t          d_off;       /* 目录文件开头至此目录进入点的位移 */
+    unsigned short d_reclen;    /* d_reclen _name 的长度, 不包含NULL 字符 */
+    unsigned char  d_type;      /* 所指的文件类型 */
+    char           d_name[256]; /* 文件名字 */
+};
+```
+telldir 返回目录流中的当前位置
+```
+#include <dirent.h>
+
+long telldir(DIR *dirp);
+```
+seekdir 设置目录流的目录项指针位置
+```
+#include <dirent.h>
+void seekdir(DIR *dirp, long loc);
+```
+closedir 关闭目录流
+```
+#include <sys/types.h>
+#include <dirent.h>
+
+int closedir(DIR *dirp);
+```
+### 错误处理
+strerror 得到错误代码的信息
+```
+#include <string.h>
+
+char *strerror(int errnum);
+```
+perror 打印出系统的错误信息
+```
+#include <stdio.h>
+
+void perror(const char *s);
+```
+### /proc文件系统
+proc特殊文件系统,用于访问底层的硬件信息,例如/proc/cpuinfo,/proc/meminfo
+### fcntl和mmap
+```
+#include <unistd.h>
+#include <fcntl.h>
+
+int fcntl(int fd, int cmd, ... /* arg */ );
+```
+mmap系列函数
+```
+#include <sys/mman.h>
+
+void *mmap(void *addr, size_t length, int prot, int flags,
+            int fd, off_t offset);
+int munmap(void *addr, size_t length);
+```
