@@ -177,6 +177,7 @@ LOG_NOTICE     需要注意的特殊情况
 LOG_INFO       一般信息
 LOG_DEBUG      调试信息
 ```
+日志一般会在/var/log/syslog中.
 ### 进程
 在子进程中获取父级id.如下
 ```
