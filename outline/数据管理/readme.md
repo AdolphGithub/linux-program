@@ -73,4 +73,11 @@ DBM *dbm_open(const char *filename,int file_open_flags, mode_t file_mode);  // �
 int dbm_store(DBM *database_desriptor, datum key,datum content, int store_mode); // 存储数据,其中key为索引,content为内容.操作模式,例如dbm_insert(插入),dbm_replace(更新)
 datum dbm_fetch(DBM *database_descriptor, datum key); // 查找一行数据.如果未查找到,则datum的dptr指针为空.这里是指针,所以要操作的化需要重新复制一份数据出来.
 void dbm_close(DBM *database_descriptor); // 关闭打开的dbm数据库.
+
+// 其他函数
+int dbm_delete(DBM *database_descriptor, datum key); // 删除数据项.使用kye
+int dbm_error(DBM *databse_descriptor);  // 测试数据库中是否有错误发生
+int dbm_clearerr(DMB *databse_descriptor); // 清除数据库中所有已被置位条件标志
+datum dbm_firstkey(DBM *databse_descriptor); // 获取数据key值
+daturm dbm_nextkey(DBM *databse_descriptor); // 获取下一个key值
 ```
