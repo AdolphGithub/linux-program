@@ -6,6 +6,7 @@ gcc参数介绍
 -lm 引入/usr/lib/libm.a的函数库即linux下的math.h，其中-l代表libm.a,如果是lfoo则为libfoo.a
 -L 增加编译器的动态库的搜索路径
 -l 指定某个动态链接库
+-MM 生成依赖关系清单.以便可以直接写入到makefile中
 ```
 在linux中,动态链接库一般位于如下几个地址
 ```
