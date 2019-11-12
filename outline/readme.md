@@ -14,4 +14,8 @@ linux一切皆文件, man命令查找手册.
 ### 数据管理
 使用gdm来充当数据库.安装请使用libgdbm-dev
 ### Mysql数据库
+使用C来管理mysql数据库
 ### 开发工具
+makefile,rpm和其他工具
+### 调试
+使用GDB
